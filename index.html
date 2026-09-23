@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Performance Marketing Toolkit — Ashish Jaiswal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#12213B;--bg-soft:#1B2C4C;--surface:#F7F2E7;--line:rgba(18,33,59,.14);--ink:#1B2340;--ink-soft:#5B5B4E;
+--text:#EDE7D6;--text-soft:#A9B4CC;--amber:#C98A2E;--amber2:#A9701F;--green:#2F6844;--red:#A63A2A;
+--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono',Consolas,monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){--bg:#0A0F1C;--bg-soft:#121A2C;--surface:#1B2436;--line:rgba(237,231,214,.14);
+--ink:#EDE7D6;--ink-soft:#B7AE97;--text:#EDE7D6;--text-soft:#8E98B3;--amber:#E0AA55;--amber2:#F0C87E;--green:#5CAE7C;--red:#E0806E;}}
+:root[data-theme="dark"]{--bg:#0A0F1C;--bg-soft:#121A2C;--surface:#1B2436;--line:rgba(237,231,214,.14);
+--ink:#EDE7D6;--ink-soft:#B7AE97;--text:#EDE7D6;--text-soft:#8E98B3;--amber:#E0AA55;--amber2:#F0C87E;--green:#5CAE7C;--red:#E0806E;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);background-image:radial-gradient(ellipse at top,var(--bg-soft),var(--bg) 70%);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+.app{max-width:1180px;margin:0 auto;padding:36px 20px 64px;}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3.6vw,32px);margin:0 0 4px;letter-spacing:.2px;}
+.byline{margin:0;color:var(--amber);font-size:12.5px;font-weight:500;}
+.hdr-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.icon-btn,.btn{background:transparent;border:1px solid rgba(237,231,214,.25);color:var(--text-soft);border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:12.5px;text-decoration:none;display:inline-flex;align-items:center;}
+.icon-btn{width:36px;height:36px;justify-content:center;font-size:15px;}
+.btn{padding:8px 14px;}
+.icon-btn:hover,.btn:hover{border-color:var(--amber);color:var(--amber);}
+.tabs{display:flex;gap:4px;margin:10px 0 22px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(237,231,214,.15);}
+.tab-btn{background:transparent;border:none;color:var(--text-soft);font-family:var(--sans);font-size:13px;padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;flex:none;white-space:nowrap;}
+.tab-btn.active{color:var(--amber);border-bottom-color:var(--amber);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.card{background:var(--surface);color:var(--ink);border-radius:3px;padding:22px 22px 18px;box-shadow:0 18px 36px -22px rgba(0,0,0,.5);}
+.card h2{font-family:var(--serif);font-size:16px;font-weight:600;margin:0 0 14px;}
+.group{margin-bottom:18px;}.group:last-child{margin-bottom:0;}
+.group-label{font-size:12px;font-weight:600;color:var(--ink-soft);margin:0 0 9px;padding-bottom:5px;border-bottom:1px solid var(--line);}
+.field-row{display:grid;grid-template-columns:1fr 106px;align-items:center;gap:10px;padding:6px 0;}
+.field-row label{font-size:13px;line-height:1.3;}
+.field-row input{font-family:var(--mono);font-size:13px;text-align:right;color:var(--ink);background:rgba(18,33,59,.045);border:1px solid var(--line);border-radius:3px;padding:6px 8px;width:100%;font-variant-numeric:tabular-nums;}
+:root[data-theme="dark"] .field-row input,:root:not([data-theme="light"]) .field-row input{background:rgba(237,231,214,.05);}
+.field-row input:focus{outline:none;border-color:var(--amber2);}
+.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px;align-items:start;}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+.stack{display:flex;flex-direction:column;gap:16px;}
+.mrow{display:flex;justify-content:space-between;font-size:12.5px;padding:5px 0;font-family:var(--mono);gap:8px;}
+.mrow .lbl{font-family:var(--sans);color:var(--ink-soft);}
+.line{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:5px 0;font-family:var(--mono);}
+.line .lbl{color:var(--ink-soft);font-family:var(--sans);}
+.line.neg .val{color:var(--red);}
+.rule{border:none;border-top:1px dashed var(--line);margin:10px 0;}
+.rule.solid{border-top:1px solid var(--line);}
+.total-line{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 4px;}
+.total-line .lbl{font-family:var(--sans);font-size:13.5px;font-weight:600;}
+.total-line .val{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;font-family:var(--mono);}
+.pos{color:var(--green);}.neg{color:var(--red);}
+.receipt-card{position:relative;}
+.perforation{position:absolute;left:0;right:0;top:-1px;height:8px;background-image:radial-gradient(circle,var(--bg) 3.5px,transparent 3.6px);background-size:16px 8px;background-position:-4px 0;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;}
+.stat{border:1px solid var(--line);border-radius:3px;padding:9px 11px;}
+.stat .k{font-family:var(--sans);font-size:10.5px;color:var(--ink-soft);margin-bottom:3px;}
+.stat .v{font-size:14px;font-family:var(--mono);}
+.warn{margin-top:12px;font-size:12px;color:var(--red);border-top:1px dashed var(--line);padding-top:9px;}
+.products,.rows{display:flex;flex-direction:column;gap:9px;}
+.product-row,.crow{border:1px solid var(--line);border-radius:3px;padding:9px 11px 10px;}
+.p-top,.top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.p-name,.c-name{flex:1;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--line);padding:3px 2px;}
+.p-name:focus,.c-name:focus{outline:none;border-color:var(--amber2);}
+.remove-row-btn,.rmv{background:transparent;border:1px solid var(--line);color:var(--ink-soft);width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:12px;line-height:1;flex:none;display:flex;align-items:center;justify-content:center;}
+.remove-row-btn:hover,.rmv:hover{border-color:var(--red);color:var(--red);}
+.p-grid,.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+@media(max-width:560px){.p-grid,.cgrid{grid-template-columns:repeat(2,1fr);}}
+.p-field,.cf{display:flex;flex-direction:column;gap:2px;}
+.p-field span,.cf span{font-size:10px;color:var(--ink-soft);}
+.p-field input,.cf input,.cf .ro{font-family:var(--mono);font-size:12.5px;text-align:right;background:rgba(18,33,59,.045);border:1px solid var(--line);border-radius:3px;padding:5px 7px;color:var(--ink);font-variant-numeric:tabular-nums;width:100%;}
+:root[data-theme="dark"] .p-field input,:root[data-theme="dark"] .cf input,:root:not([data-theme="light"]) .p-field input,:root:not([data-theme="light"]) .cf input{background:rgba(237,231,214,.05);}
+.cf .ro{background:transparent;border-color:transparent;color:var(--ink-soft);}
+.add-row-btn,.addbtn{align-self:flex-start;background:transparent;border:1px dashed var(--line);color:var(--amber2);font-size:12.5px;padding:7px 12px;border-radius:3px;cursor:pointer;margin-top:6px;}
+.add-row-btn:hover,.addbtn:hover{border-color:var(--amber2);}
+.tot-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;color:var(--ink-soft);font-family:var(--mono);border-top:1px dashed var(--line);margin-top:8px;padding-top:8px;flex-wrap:wrap;gap:4px;}
+.byproduct-row{display:grid;grid-template-columns:1.3fr .55fr 1fr 1fr;gap:8px;font-size:12.5px;padding:4px 0;align-items:baseline;}
+.byproduct-row.head{color:var(--ink-soft);font-family:var(--sans);font-size:10.5px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:2px;}
+.byproduct-row .val{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);}
+@media(max-width:460px){.byproduct-row{grid-template-columns:1.2fr .5fr 1fr;}.byproduct-row .contrib-col{display:none;}}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.kpi-grid.kpi-10{grid-template-columns:repeat(5,1fr);}
+@media(max-width:900px){.kpi-grid.kpi-10{grid-template-columns:repeat(3,1fr);}.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.kpi-grid.kpi-10{grid-template-columns:repeat(2,1fr);}.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi{background:var(--surface);color:var(--ink);border-radius:3px;padding:11px 13px;min-width:0;}
+.kpi .k{font-size:10.5px;color:var(--ink-soft);margin-bottom:3px;}
+.kpi .v{font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;}
+.funnel{display:flex;flex-direction:column;gap:9px;margin-bottom:6px;}
+.frow{display:flex;align-items:center;gap:10px;}
+.frow .flbl{width:80px;font-size:12px;color:var(--ink-soft);flex:none;}
+.fbar{flex:1;height:13px;background:rgba(18,33,59,.08);border-radius:99px;overflow:hidden;}
+.ffill{height:100%;background:var(--amber);border-radius:99px;}
+.frow .fval{width:74px;text-align:right;font-family:var(--mono);font-size:12.5px;flex:none;}
+table.pl,table.sc{width:100%;border-collapse:collapse;font-size:13px;}
+table.pl td{padding:6px 0;font-family:var(--mono);}
+table.pl td:first-child{font-family:var(--sans);color:var(--ink-soft);}
+table.pl td:last-child{text-align:right;}
+table.pl tr.rule td{border-top:1px solid var(--line);padding-top:9px;}
+table.pl tr.total td{font-weight:600;font-size:15px;}
+.scenario-wrap{overflow-x:auto;}
+table.sc{font-size:12px;min-width:520px;}
+table.sc th{text-align:right;font-family:var(--sans);font-size:10.5px;color:var(--ink-soft);font-weight:500;padding:5px 6px;border-bottom:1px solid var(--line);}
+table.sc th:first-child,table.sc td:first-child{text-align:left;}
+table.sc td{text-align:right;font-family:var(--mono);padding:6px;border-bottom:1px dashed var(--line);}
+.summary{font-size:13px;line-height:1.6;}
+.warn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.warn-list li{font-size:12px;color:var(--red);padding:7px 10px;background:rgba(166,58,42,.08);border-radius:3px;}
+.biz-toggle{display:flex;gap:8px;margin-bottom:16px;}
+.biz-toggle button{flex:1;background:transparent;border:1px solid var(--line);color:var(--ink-soft);padding:9px;border-radius:3px;cursor:pointer;font-size:13px;font-family:var(--sans);}
+.biz-toggle button.active{border-color:var(--amber2);color:var(--ink);background:rgba(201,138,46,.08);}
+.tab-head{display:flex;justify-content:flex-end;margin-bottom:10px;}
+.print-header{display:none;}
+.print-header h2{font-family:var(--serif);font-size:18px;margin:0 0 4px;}
+.print-header p{font-size:11px;color:#555;margin:2px 0;}
+footer{margin-top:26px;font-size:11.5px;color:var(--text-soft);text-align:center;}
+@media(max-width:480px){.app{padding:20px 14px 48px;}.card{padding:16px 16px 14px;}.field-row{grid-template-columns:1fr;}.field-row input{margin-top:2px;}}
+@media print{
+  .icon-btn,.btn,.rmv,.remove-row-btn,.add-row-btn,.addbtn,.tabs,.tab-head{display:none!important;}
+  .tab-panel{display:none!important;}
+  .tab-panel[data-report-active="true"]{display:block!important;}
+  .print-header{display:block!important;margin-bottom:16px;}
+  body{background:#fff;color:#000;}
+  .card,.kpi{box-shadow:none;border:1px solid #ccc;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><h1>Performance Marketing Toolkit</h1><p class="byline">Ashish Jaiswal — Growth &amp; Performance Marketing Manager</p></div>
+  <div class="hdr-actions">
+    <button class="btn" id="resetBtn" type="button">Reset</button>
+    <a class="btn" href="https://wa.me/919599492730" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a class="btn" href="mailto:ashishjaiswal9599@gmail.com">✉ Email</a>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">◐</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="ecom" type="button">E-commerce Calculator</button>
+  <button class="tab-btn" data-tab="leadgen" type="button">Lead Generation Calculator</button>
+  <button class="tab-btn" data-tab="budget" type="button">Budget Planner</button>
+</nav>
+
+<section id="panel-ecom" class="tab-panel active">
+  <div class="print-header"><h2>E-commerce — Profit &amp; Growth Report</h2><p>Ashish Jaiswal — Growth &amp; Performance Marketing Manager · 9599492730 · ashishjaiswal9599@gmail.com</p><p id="ph_date_ecom"></p></div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="k">Revenue</div><div class="v" id="e_k_rev">—</div></div>
+    <div class="kpi"><div class="k">Net Profit</div><div class="v" id="e_k_profit">—</div></div>
+    <div class="kpi"><div class="k">ROAS</div><div class="v" id="e_k_roas">—</div></div>
+    <div class="kpi"><div class="k">Delivered Orders</div><div class="v" id="e_k_orders">—</div></div>
+  </div>
+  <div class="tab-head"><button class="btn" type="button" onclick="printReport('ecom')">⬇ Download Report (PDF)</button></div>
+  <div class="two-col">
+    <section class="card">
+      <div class="group">
+        <p class="group-label">Orders &amp; logistics</p>
+        <div class="field-row"><label for="totalOrders">Total orders generated</label><input type="number" id="totalOrders" value="300"></div>
+        <div class="field-row"><label for="rtoCost">RTO cost / RTO order</label><input type="number" id="rtoCost" value="180"></div>
+      </div>
+      <div class="group">
+        <p class="group-label">Products</p>
+        <div class="products" id="productsContainer">
+          <div class="product-row"><div class="p-top"><input type="text" class="p-name" value="Product A"><button type="button" class="remove-row-btn">×</button></div>
+            <div class="p-grid">
+              <label class="p-field"><span>Prepaid price</span><input type="number" class="p-prepaidPrice" value="1500"></label>
+              <label class="p-field"><span>COD price</span><input type="number" class="p-codPrice" value="1599"></label>
+              <label class="p-field"><span>Cost / unit</span><input type="number" class="p-cost" value="800"></label>
+              <label class="p-field"><span>Prepaid qty</span><input type="number" class="p-prepaidQty" value="50"></label>
+              <label class="p-field"><span>COD qty</span><input type="number" class="p-codQty" value="150"></label>
+              <label class="p-field"><span>RTO qty</span><input type="number" class="p-rtoQty" value="10"></label>
+            </div></div>
+          <div class="product-row"><div class="p-top"><input type="text" class="p-name" value="Product B (offer price)"><button type="button" class="remove-row-btn">×</button></div>
+            <div class="p-grid">
+              <label class="p-field"><span>Prepaid price</span><input type="number" class="p-prepaidPrice" value="899"></label>
+              <label class="p-field"><span>COD price</span><input type="number" class="p-codPrice" value="999"></label>
+              <label class="p-field"><span>Cost / unit</span><input type="number" class="p-cost" value="450"></label>
+              <label class="p-field"><span>Prepaid qty</span><input type="number" class="p-prepaidQty" value="0"></label>
+              <label class="p-field"><span>COD qty</span><input type="number" class="p-codQty" value="0"></label>
+              <label class="p-field"><span>RTO qty</span><input type="number" class="p-rtoQty" value="0"></label>
+            </div></div>
+        </div>
+        <button type="button" class="add-row-btn" id="addRowBtn">+ Add product</button>
+      </div>
+      <div class="group">
+        <p class="group-label">Ads &amp; fixed costs</p>
+        <div class="field-row"><label for="metaSpend">Meta ad spend</label><input type="number" id="metaSpend" value="90000"></div>
+        <div class="field-row"><label for="metaFee">Meta management fee</label><input type="number" id="metaFee" value="12000"></div>
+        <div class="field-row"><label for="otherFixed">Other fixed costs</label><input type="number" id="otherFixed" value="0"></div>
+      </div>
+      <p class="warn" id="warnBox" hidden></p>
+    </section>
+    <div class="stack">
+      <section class="card receipt-card"><div class="perforation"></div>
+        <h2>Profit Waterfall</h2>
+        <p style="font-size:12px;color:var(--ink-soft);margin:-8px 0 12px;" id="deliveredSub">—</p>
+        <div class="byproduct"><div class="byproduct-row head"><span>Product</span><span>Orders</span><span class="val">Revenue</span><span class="val contrib-col">Contribution</span></div><div id="byProductBody"></div></div>
+        <hr class="rule solid">
+        <div class="line"><span class="lbl">Total revenue</span><span class="val" id="r_totalRev">—</span></div>
+        <hr class="rule solid">
+        <div class="line neg"><span class="lbl">Variable cost</span><span class="val" id="r_varCost">—</span></div>
+        <div class="line neg"><span class="lbl">RTO cost</span><span class="val" id="r_rtoCost">—</span></div>
+        <div class="total-line"><span class="lbl">Contribution before ads</span><span class="val" id="r_contrib">—</span></div>
+        <hr class="rule solid">
+        <div class="line neg"><span class="lbl">Meta ad spend</span><span class="val" id="r_metaSpend">—</span></div>
+        <div class="line neg"><span class="lbl">Meta management fee</span><span class="val" id="r_metaFee">—</span></div>
+        <div class="line neg"><span class="lbl">Other fixed costs</span><span class="val" id="r_otherFixed">—</span></div>
+        <hr class="rule solid">
+        <div class="total-line"><span class="lbl">Net profit</span><span class="val" id="r_netProfit">—</span></div>
+        <div class="stats">
+          <div class="stat"><div class="k">Reported CPA</div><div class="v" id="s_cpa">—</div></div>
+          <div class="stat"><div class="k">Effective CAC</div><div class="v" id="s_cac">—</div></div>
+          <div class="stat"><div class="k">ROAS</div><div class="v" id="s_roas">—</div></div>
+        </div>
+      </section>
+      <section class="card"><h2>Growth Planner (E-commerce)</h2>
+        <div class="field-row"><label>Target Monthly Revenue (₹)</label><input type="number" id="e_gp_target" value="1000000"></div>
+        <div class="field-row"><label>Planning CAC / order (₹)</label><input type="number" id="e_gp_cac" value="474"></div>
+        <div class="field-row"><label>Assumed AOV (₹)</label><input type="number" id="e_gp_aov" value="1550"></div>
+        <hr class="rule solid" style="margin:12px 0;">
+        <div class="mrow"><span class="lbl">Required Delivered Orders</span><span id="e_gp_orders">—</span></div>
+        <div class="mrow"><span class="lbl">Required Meta Budget</span><span id="e_gp_budget">—</span></div>
+        <div class="mrow"><span class="lbl">Expected Revenue</span><span id="e_gp_revenue">—</span></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section id="panel-leadgen" class="tab-panel">
+  <div class="print-header"><h2>Lead Generation — Profit &amp; Growth Report</h2><p>Ashish Jaiswal — Growth &amp; Performance Marketing Manager · 9599492730 · ashishjaiswal9599@gmail.com</p><p id="ph_date_leadgen"></p></div>
+  <div class="kpi-grid kpi-10" id="kpiGrid">
+    <div class="kpi"><div class="k">Revenue</div><div class="v" id="k_rev">—</div></div>
+    <div class="kpi"><div class="k">Meta Spend</div><div class="v" id="k_meta">—</div></div>
+    <div class="kpi"><div class="k">Total Leads</div><div class="v" id="k_leads">—</div></div>
+    <div class="kpi"><div class="k">Won Customers</div><div class="v" id="k_won">—</div></div>
+    <div class="kpi"><div class="k">AOV</div><div class="v" id="k_aov">—</div></div>
+    <div class="kpi"><div class="k">CPL</div><div class="v" id="k_cpl">—</div></div>
+    <div class="kpi"><div class="k">CAC</div><div class="v" id="k_cac">—</div></div>
+    <div class="kpi"><div class="k">ROAS</div><div class="v" id="k_roas">—</div></div>
+    <div class="kpi"><div class="k">Operating Profit</div><div class="v" id="k_profit">—</div></div>
+    <div class="kpi"><div class="k">Profit Margin</div><div class="v" id="k_margin">—</div></div>
+  </div>
+  <div class="tab-head"><button class="btn" type="button" onclick="printReport('leadgen')">⬇ Download Report (PDF)</button></div>
+  <div class="two-col">
+    <div class="stack">
+      <section class="card"><h2>Business Inputs</h2>
+        <div class="field-row"><label for="leads">Monthly Leads</label><input type="number" id="leads" value="3500"></div>
+        <div class="field-row"><label for="cpl">Average CPL (₹)</label><input type="number" id="cpl" value="150"></div>
+        <div class="field-row"><label for="rnrLostPct">RNR + LOST %</label><input type="number" id="rnrLostPct" value="50"></div>
+        <div class="field-row"><label for="qualifiedPct">Qualified / Active %</label><input type="number" id="qualifiedPct" value="50"></div>
+        <div class="field-row"><label for="wonCustomers">Won Customers</label><input type="number" id="wonCustomers" value="75"></div>
+        <div class="field-row"><label for="teamSize">Team Size</label><input type="number" id="teamSize" value="45"></div>
+        <div class="field-row"><label for="salaryExpense">Monthly Salary Expense (₹)</label><input type="number" id="salaryExpense" value="1550000"></div>
+        <div class="field-row"><label for="officeExpense">Office / Rent / Utilities (₹)</label><input type="number" id="officeExpense" value="100000"></div>
+        <div class="field-row"><label for="otherFixedExpenses">Other Fixed Expenses (₹)</label><input type="number" id="otherFixedExpenses" value="0"></div>
+        <div class="field-row"><label for="salesIncentive">Sales Incentive / Commission (₹)</label><input type="number" id="salesIncentive" value="0"></div>
+        <div class="field-row"><label for="otherRevenueLinkedPct">Other Revenue-Linked Costs %</label><input type="number" id="otherRevenueLinkedPct" value="0"></div>
+      </section>
+      <section class="card"><h2>Course-wise Sales</h2>
+        <div class="rows" id="courseRows"></div>
+        <button class="addbtn" id="addCourseBtn" type="button">+ Add course</button>
+        <div class="tot-row"><span>Total Sales / Revenue / AOV</span><span id="courseTotals">—</span></div>
+      </section>
+      <section class="card"><h2>Growth Planner — Inputs</h2>
+        <div class="field-row"><label for="targetRevenue">Target Monthly Revenue (₹)</label><input type="number" id="targetRevenue" value="4000000"></div>
+        <div class="field-row"><label for="planningCPL">Planning CPL (₹)</label><input type="number" id="planningCPL" value="150"></div>
+        <div class="field-row"><label for="expectedLeadToSale">Expected Lead → Sale %</label><input type="number" id="expectedLeadToSale" value="2.5" step="0.1"></div>
+        <div class="field-row"><label for="currentAOV">Current AOV assumption (₹)</label><input type="number" id="currentAOV" value="31800"></div>
+      </section>
+    </div>
+    <div class="stack">
+      <section class="card"><h2>Funnel &amp; Metrics</h2>
+        <div class="funnel">
+          <div class="frow"><span class="flbl">Leads</span><div class="fbar"><div class="ffill" id="f1" style="width:100%"></div></div><span class="fval" id="f1v">—</span></div>
+          <div class="frow"><span class="flbl">Qualified</span><div class="fbar"><div class="ffill" id="f2" style="width:0"></div></div><span class="fval" id="f2v">—</span></div>
+          <div class="frow"><span class="flbl">Won</span><div class="fbar"><div class="ffill" id="f3" style="width:0"></div></div><span class="fval" id="f3v">—</span></div>
+        </div>
+        <div class="mrow"><span class="lbl">RNR + Lost Leads</span><span id="m_rnr">—</span></div>
+        <div class="mrow"><span class="lbl">Lead → Sale %</span><span id="m_lts">—</span></div>
+        <div class="mrow"><span class="lbl">Qualified → Sale %</span><span id="m_qls">—</span></div>
+        <div class="mrow"><span class="lbl">Revenue per Lead</span><span id="m_rpl">—</span></div>
+      </section>
+      <section class="card"><h2>Monthly P&amp;L</h2>
+        <table class="pl">
+          <tr><td>Revenue</td><td id="pl_rev">—</td></tr>
+          <tr class="rule"><td>Meta Ads Spend</td><td id="pl_meta">—</td></tr>
+          <tr><td>Team Salary</td><td id="pl_sal">—</td></tr>
+          <tr><td>Office / Rent / Utilities</td><td id="pl_off">—</td></tr>
+          <tr><td>Sales Incentive / Commission</td><td id="pl_inc">—</td></tr>
+          <tr><td>Other Fixed Expenses</td><td id="pl_ofe">—</td></tr>
+          <tr><td>Revenue-Linked Costs</td><td id="pl_rlc">—</td></tr>
+          <tr class="rule total"><td>Operating Profit</td><td id="pl_profit">—</td></tr>
+          <tr><td>Operating Profit Margin</td><td id="pl_margin">—</td></tr>
+        </table>
+      </section>
+      <section class="card"><h2>Break-even <span style="font-size:10.5px;color:var(--ink-soft);font-weight:400;">(estimate)</span></h2>
+        <div class="mrow"><span class="lbl">Current Revenue</span><span id="be_curr">—</span></div>
+        <div class="mrow"><span class="lbl">Current Total Costs</span><span id="be_cost">—</span></div>
+        <div class="mrow"><span class="lbl">Current Profit / Loss</span><span id="be_pl">—</span></div>
+        <div class="mrow"><span class="lbl">Break-even Revenue</span><span id="be_rev">—</span></div>
+        <div class="mrow"><span class="lbl">Additional Revenue Needed</span><span id="be_add">—</span></div>
+      </section>
+      <section class="card"><h2>Growth Planner — Result</h2>
+        <div class="mrow"><span class="lbl">Required Sales</span><span id="gp_sales">—</span></div>
+        <div class="mrow"><span class="lbl">Required Leads</span><span id="gp_leads">—</span></div>
+        <div class="mrow"><span class="lbl">Required Meta Budget</span><span id="gp_budget">—</span></div>
+        <div class="mrow"><span class="lbl">Expected CAC</span><span id="gp_cac">—</span></div>
+        <div class="mrow"><span class="lbl">Expected Profit</span><span id="gp_profit">—</span></div>
+        <div class="mrow" style="border-top:1px dashed var(--line);margin-top:6px;padding-top:8px;"><span class="lbl">Leads gap</span><span id="gp_gap">—</span></div>
+      </section>
+      <section class="card"><h2>Investment Scenarios</h2>
+        <div class="scenario-wrap"><table class="sc"><thead><tr><th>Meta Budget</th><th>Leads</th><th>Sales</th><th>Revenue</th><th>CAC</th><th>Profit</th></tr></thead><tbody id="scenarioBody"></tbody></table></div>
+      </section>
+      <section class="card"><h2>Client Summary</h2><p class="summary" id="summaryText">—</p></section>
+      <section class="card" id="warnCard" hidden><h2>Warnings</h2><ul class="warn-list" id="warnList"></ul></section>
+    </div>
+  </div>
+</section>
+
+<section id="panel-budget" class="tab-panel">
+  <div class="print-header"><h2>Budget Planner Report</h2><p>Ashish Jaiswal — Growth &amp; Performance Marketing Manager · 9599492730 · ashishjaiswal9599@gmail.com</p><p id="ph_date_budget"></p></div>
+  <div class="tab-head"><button class="btn" type="button" onclick="printReport('budget')">⬇ Download Report (PDF)</button></div>
+  <section class="card" style="max-width:560px;">
+    <h2>Budget Planner</h2>
+    <div class="biz-toggle">
+      <button type="button" class="active" data-bp="ecom">E-commerce</button>
+      <button type="button" data-bp="leadgen">Lead Generation</button>
+    </div>
+    <div id="bp-ecom">
+      <div class="field-row"><label>Monthly Ad Budget (₹)</label><input type="number" id="bp_e_budget" value="100000"></div>
+      <div class="field-row"><label>Planning CAC / order (₹)</label><input type="number" id="bp_e_cac" value="474"></div>
+      <div class="field-row"><label>Blended AOV (₹)</label><input type="number" id="bp_e_aov" value="1550"></div>
+      <div class="field-row"><label>Variable cost / order (₹)</label><input type="number" id="bp_e_varcost" value="800"></div>
+      <div class="field-row"><label>Other fixed costs (₹)</label><input type="number" id="bp_e_fixed" value="12000"></div>
+      <hr class="rule solid" style="margin:14px 0;">
+      <div class="mrow"><span class="lbl">Projected Delivered Orders</span><span id="bp_e_orders">—</span></div>
+      <div class="mrow"><span class="lbl">Projected Revenue</span><span id="bp_e_revenue">—</span></div>
+      <div class="mrow"><span class="lbl">Projected Profit</span><span id="bp_e_profit">—</span></div>
+    </div>
+    <div id="bp-leadgen" hidden>
+      <div class="field-row"><label>Monthly Ad Budget (₹)</label><input type="number" id="bp_l_budget" value="500000"></div>
+      <div class="field-row"><label>CPL (₹)</label><input type="number" id="bp_l_cpl" value="150"></div>
+      <div class="field-row"><label>Lead → Sale %</label><input type="number" id="bp_l_conv" value="2.5" step="0.1"></div>
+      <div class="field-row"><label>AOV (₹)</label><input type="number" id="bp_l_aov" value="31800"></div>
+      <div class="field-row"><label>Fixed costs (₹)</label><input type="number" id="bp_l_fixed" value="1650000"></div>
+      <hr class="rule solid" style="margin:14px 0;">
+      <div class="mrow"><span class="lbl">Projected Leads</span><span id="bp_l_leads">—</span></div>
+      <div class="mrow"><span class="lbl">Projected Sales</span><span id="bp_l_sales">—</span></div>
+      <div class="mrow"><span class="lbl">Projected Revenue</span><span id="bp_l_revenue">—</span></div>
+      <div class="mrow"><span class="lbl">Projected Profit</span><span id="bp_l_profit">—</span></div>
+    </div>
+  </section>
+</section>
+
+<footer>Performance Marketing Toolkit — Ashish Jaiswal · 9599492730 · ashishjaiswal9599@gmail.com</footer>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  function fmt(n){var s=n<0?'-':'';n=Math.round(Math.abs(n));return s+'₹'+n.toLocaleString('en-IN');}
+  function pct(n){return n.toFixed(2)+'%';}
+  function num(id){var v=parseFloat($(id).value);return isNaN(v)?0:v;}
+  function rnum(row,sel){var v=parseFloat(row.querySelector(sel).value);return isNaN(v)?0:v;}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  function setTxt(id,text,cls){var e=$(id);e.textContent=text;if(cls){e.className=e.className.replace(/\bpos\b|\bneg\b/g,'').trim()+' '+cls;}}
+
+  // ---- E-commerce ----
+  var productsContainer=$('productsContainer');
+  function createProductRow(d){d=d||{};var w=document.createElement('div');w.className='product-row';
+    w.innerHTML='<div class="p-top"><input type="text" class="p-name" value="'+esc(d.name||'Product')+'"><button type="button" class="remove-row-btn">×</button></div>'+
+    '<div class="p-grid">'+
+      '<label class="p-field"><span>Prepaid price</span><input type="number" class="p-prepaidPrice" value="'+(d.prepaidPrice||0)+'"></label>'+
+      '<label class="p-field"><span>COD price</span><input type="number" class="p-codPrice" value="'+(d.codPrice||0)+'"></label>'+
+      '<label class="p-field"><span>Cost / unit</span><input type="number" class="p-cost" value="'+(d.cost||0)+'"></label>'+
+      '<label class="p-field"><span>Prepaid qty</span><input type="number" class="p-prepaidQty" value="'+(d.prepaidQty||0)+'"></label>'+
+      '<label class="p-field"><span>COD qty</span><input type="number" class="p-codQty" value="'+(d.codQty||0)+'"></label>'+
+      '<label class="p-field"><span>RTO qty</span><input type="number" class="p-rtoQty" value="'+(d.rtoQty||0)+'"></label>'+
+    '</div>';return w;}
+
+  function ecomCompute(){
+    var totalOrders=num('totalOrders'),rtoCostPerOrder=num('rtoCost'),metaSpend=num('metaSpend'),metaFee=num('metaFee'),otherFixed=num('otherFixed');
+    var rows=Array.prototype.slice.call(productsContainer.querySelectorAll('.product-row'));
+    var totalRevenue=0,totalVarCost=0,totalRtoQty=0,totalRtoCost=0,totalConfirmed=0,totalDelivered=0,byProduct=[];
+    rows.forEach(function(row){
+      var name=row.querySelector('.p-name').value||'Product';
+      var pp=rnum(row,'.p-prepaidPrice'),cp=rnum(row,'.p-codPrice'),cost=rnum(row,'.p-cost'),pq=rnum(row,'.p-prepaidQty'),cq=rnum(row,'.p-codQty'),rq=rnum(row,'.p-rtoQty');
+      var codDel=Math.max(cq-rq,0),delivered=pq+codDel,revenue=pq*pp+codDel*cp,varCost=delivered*cost,rtoCostRow=rq*rtoCostPerOrder,contribRow=revenue-varCost-rtoCostRow;
+      totalRevenue+=revenue;totalVarCost+=varCost;totalRtoQty+=rq;totalRtoCost+=rtoCostRow;totalConfirmed+=pq+cq;totalDelivered+=delivered;
+      byProduct.push({name:name,orders:delivered,revenue:revenue,contrib:contribRow});
+    });
+    var cancelled=totalOrders-totalConfirmed;
+    var contribution=totalRevenue-totalVarCost-totalRtoCost;
+    var netProfit=contribution-metaSpend-metaFee-otherFixed;
+    var cpa=totalOrders>0?metaSpend/totalOrders:0, cac=totalDelivered>0?metaSpend/totalDelivered:0, roas=metaSpend>0?totalRevenue/metaSpend:0;
+    $('deliveredSub').textContent=totalDelivered+' delivered orders · '+cancelled+' cancelled/unconfirmed · '+totalRtoQty+' RTO';
+    $('byProductBody').innerHTML=byProduct.map(function(p){return '<div class="byproduct-row"><span>'+esc(p.name)+'</span><span>'+p.orders+'</span><span class="val">'+fmt(p.revenue)+'</span><span class="val contrib-col'+(p.contrib<0?' neg':'')+'">'+fmt(p.contrib)+'</span></div>';}).join('');
+    setTxt('r_totalRev',fmt(totalRevenue));setTxt('r_varCost','−'+fmt(totalVarCost));setTxt('r_rtoCost','−'+fmt(totalRtoCost));setTxt('r_contrib',fmt(contribution));
+    setTxt('r_metaSpend','−'+fmt(metaSpend));setTxt('r_metaFee','−'+fmt(metaFee));setTxt('r_otherFixed','−'+fmt(otherFixed));setTxt('r_netProfit',fmt(netProfit),netProfit>=0?'pos':'neg');
+    setTxt('s_cpa',fmt(cpa));setTxt('s_cac',fmt(cac));setTxt('s_roas',roas.toFixed(2)+'x');
+    setTxt('e_k_rev',fmt(totalRevenue));setTxt('e_k_profit',fmt(netProfit),netProfit>=0?'pos':'neg');setTxt('e_k_roas',roas.toFixed(2)+'x');setTxt('e_k_orders',totalDelivered);
+    var wb=$('warnBox');
+    if(cancelled<0){wb.hidden=false;wb.textContent='Products ke prepaid+COD qty ka total, total orders generated se zyada hai.';}else{wb.hidden=true;}
+    var gpTarget=num('e_gp_target'),gpCac=num('e_gp_cac'),gpAov=num('e_gp_aov');
+    var reqOrders=gpAov>0?gpTarget/gpAov:0,reqBudget=reqOrders*gpCac;
+    setTxt('e_gp_orders',Math.ceil(reqOrders));setTxt('e_gp_budget',fmt(reqBudget));setTxt('e_gp_revenue',fmt(reqOrders*gpAov));
+  }
+  productsContainer.addEventListener('input',ecomCompute);
+  productsContainer.addEventListener('click',function(e){if(e.target.classList.contains('remove-row-btn')){var r=e.target.closest('.product-row');if(r&&productsContainer.children.length>1){r.remove();ecomCompute();}}});
+  $('addRowBtn').addEventListener('click',function(){productsContainer.appendChild(createProductRow({name:'Product '+(productsContainer.children.length+1)}));ecomCompute();});
+  ['totalOrders','rtoCost','metaSpend','metaFee','otherFixed','e_gp_target','e_gp_cac','e_gp_aov'].forEach(function(id){$(id).addEventListener('input',ecomCompute);});
+
+  // ---- Lead Generation ----
+  var courseRows=$('courseRows');
+  var defaultCourses=[{name:'Vedic Astrology',price:40000,qty:20},{name:'Numerology',price:35000,qty:15},{name:'KP Astrology',price:31000,qty:10},{name:'Akashic Records',price:25000,qty:30}];
+  function createCourseRow(d){d=d||{};var w=document.createElement('div');w.className='crow';
+    w.innerHTML='<div class="top"><input type="text" class="c-name" value="'+esc(d.name||'Course')+'"><button type="button" class="rmv">×</button></div>'+
+    '<div class="cgrid"><label class="cf"><span>Price</span><input type="number" class="c-price" value="'+(d.price||0)+'"></label>'+
+    '<label class="cf"><span>Sales</span><input type="number" class="c-qty" value="'+(d.qty||0)+'"></label>'+
+    '<label class="cf"><span>Revenue</span><span class="ro c-rev">—</span></label></div>';return w;}
+  defaultCourses.forEach(function(c){courseRows.appendChild(createCourseRow(c));});
+
+  var bizIds=['leads','cpl','rnrLostPct','qualifiedPct','wonCustomers','teamSize','salaryExpense','officeExpense','otherFixedExpenses','salesIncentive','otherRevenueLinkedPct'];
+  var gpIds=['targetRevenue','planningCPL','expectedLeadToSale','currentAOV'];
+  var scenarios=[200000,300000,400000,500000,750000,1000000];
+
+  function leadgenCompute(){
+    var leads=num('leads'),cpl=num('cpl'),rnrLostPct=num('rnrLostPct'),qualifiedPct=num('qualifiedPct'),wonCustomers=num('wonCustomers'),
+    salaryExpense=num('salaryExpense'),officeExpense=num('officeExpense'),otherFixedExpenses=num('otherFixedExpenses'),salesIncentive=num('salesIncentive'),otherRevenueLinkedPct=num('otherRevenueLinkedPct');
+    var rows=Array.prototype.slice.call(courseRows.querySelectorAll('.crow'));
+    var totalSales=0,totalRevenue=0;
+    rows.forEach(function(row){var price=rnum(row,'.c-price'),qty=rnum(row,'.c-qty'),rev=price*qty;totalSales+=qty;totalRevenue+=rev;row.querySelector('.c-rev').textContent=fmt(rev);});
+    var aov=totalSales>0?totalRevenue/totalSales:0;
+    $('courseTotals').textContent=totalSales+' sales · '+fmt(totalRevenue)+' · AOV '+fmt(aov);
+    var metaSpend=leads*cpl,rnrLostLeads=leads*rnrLostPct/100,qualifiedLeads=leads*qualifiedPct/100;
+    var leadToSalePct=leads>0?wonCustomers/leads*100:0,qlToSalePct=qualifiedLeads>0?wonCustomers/qualifiedLeads*100:0;
+    var cac=wonCustomers>0?metaSpend/wonCustomers:0,revenuePerLead=leads>0?totalRevenue/leads:0,roas=metaSpend>0?totalRevenue/metaSpend:0;
+    var revenueLinkedCost=totalRevenue*otherRevenueLinkedPct/100;
+    var totalOperatingCost=metaSpend+salaryExpense+officeExpense+otherFixedExpenses+salesIncentive+revenueLinkedCost;
+    var operatingProfit=totalRevenue-totalOperatingCost, operatingMarginPct=totalRevenue>0?operatingProfit/totalRevenue*100:0;
+    var nonRevLinkedFixed=metaSpend+salaryExpense+officeExpense+otherFixedExpenses+salesIncentive;
+    var contribRatio=1-otherRevenueLinkedPct/100;
+    var breakEvenRevenue=contribRatio>0?nonRevLinkedFixed/contribRatio:0;
+    var addlRevenueNeeded=Math.max(breakEvenRevenue-totalRevenue,0);
+    var targetRevenue=num('targetRevenue'),planningCPL=num('planningCPL'),expectedLTS=num('expectedLeadToSale'),currentAOV=num('currentAOV');
+    var requiredSales=currentAOV>0?targetRevenue/currentAOV:0, requiredLeads=expectedLTS>0?requiredSales/(expectedLTS/100):0;
+    var requiredBudget=requiredLeads*planningCPL, expectedCAC=requiredSales>0?requiredBudget/requiredSales:0;
+    var expectedRevenue=requiredSales*currentAOV, expectedRLC=expectedRevenue*otherRevenueLinkedPct/100;
+    var expectedProfit=expectedRevenue-requiredBudget-salaryExpense-officeExpense-otherFixedExpenses-salesIncentive-expectedRLC;
+
+    setTxt('k_rev',fmt(totalRevenue));setTxt('k_meta',fmt(metaSpend));setTxt('k_leads',leads);setTxt('k_won',wonCustomers);
+    setTxt('k_aov',fmt(aov));setTxt('k_cpl',fmt(cpl));setTxt('k_cac',fmt(cac));setTxt('k_roas',roas.toFixed(2)+'x');
+    setTxt('k_profit',fmt(operatingProfit),operatingProfit>=0?'pos':'neg');setTxt('k_margin',pct(operatingMarginPct));
+    $('f1v').textContent=leads;$('f2v').textContent=Math.round(qualifiedLeads);$('f3v').textContent=wonCustomers;
+    $('f2').style.width=(leads>0?qualifiedLeads/leads*100:0)+'%';$('f3').style.width=(leads>0?wonCustomers/leads*100:0)+'%';
+    setTxt('m_rnr',Math.round(rnrLostLeads));setTxt('m_lts',pct(leadToSalePct));setTxt('m_qls',pct(qlToSalePct));setTxt('m_rpl',fmt(revenuePerLead));
+    setTxt('pl_rev',fmt(totalRevenue));setTxt('pl_meta','−'+fmt(metaSpend));setTxt('pl_sal','−'+fmt(salaryExpense));setTxt('pl_off','−'+fmt(officeExpense));
+    setTxt('pl_inc','−'+fmt(salesIncentive));setTxt('pl_ofe','−'+fmt(otherFixedExpenses));setTxt('pl_rlc','−'+fmt(revenueLinkedCost));
+    setTxt('pl_profit',fmt(operatingProfit),operatingProfit>=0?'pos':'neg');setTxt('pl_margin',pct(operatingMarginPct));
+    setTxt('be_curr',fmt(totalRevenue));setTxt('be_cost',fmt(totalOperatingCost));setTxt('be_pl',fmt(operatingProfit),operatingProfit>=0?'pos':'neg');
+    setTxt('be_rev',fmt(breakEvenRevenue));setTxt('be_add',fmt(addlRevenueNeeded));
+    setTxt('gp_sales',Math.ceil(requiredSales));setTxt('gp_leads',Math.ceil(requiredLeads));setTxt('gp_budget',fmt(requiredBudget));
+    setTxt('gp_cac',fmt(expectedCAC));setTxt('gp_profit',fmt(expectedProfit),expectedProfit>=0?'pos':'neg');setTxt('gp_gap',Math.ceil(requiredLeads-leads));
+    $('scenarioBody').innerHTML=scenarios.map(function(b){
+      var estLeads=planningCPL>0?b/planningCPL:0,estSales=estLeads*(expectedLTS/100),estRevenue=estSales*currentAOV,estCAC=estSales>0?b/estSales:0;
+      var estRLC=estRevenue*otherRevenueLinkedPct/100, estProfit=estRevenue-b-salaryExpense-officeExpense-otherFixedExpenses-salesIncentive-estRLC;
+      return '<tr><td>'+fmt(b)+'</td><td>'+Math.round(estLeads)+'</td><td>'+Math.round(estSales)+'</td><td>'+fmt(estRevenue)+'</td><td>'+fmt(estCAC)+'</td><td class="'+(estProfit>=0?'pos':'neg')+'">'+fmt(estProfit)+'</td></tr>';
+    }).join('');
+    var summary='Aapke business ne '+leads.toLocaleString('en-IN')+' leads se '+fmt(totalRevenue)+' revenue generate kiya, average CPL '+fmt(cpl)+' ke saath. Current lead-to-sale conversion '+pct(leadToSalePct)+' hai, Meta CAC '+fmt(cac)+' ke saath. Estimated operating profit '+fmt(operatingProfit)+' hai ('+pct(operatingMarginPct)+' margin). Target '+fmt(targetRevenue)+' revenue ke liye approx '+Math.ceil(requiredLeads).toLocaleString('en-IN')+' leads aur '+fmt(requiredBudget)+' Meta Ads investment chahiye hoga.';
+    $('summaryText').textContent=summary;
+    var warns=[];
+    if(Math.abs((rnrLostPct+qualifiedPct)-100)>1)warns.push('RNR+LOST % aur Qualified % ka total 100% ke aas-paas nahi hai.');
+    if(cpl>400)warns.push('CPL ₹'+cpl+' unusually high lag raha hai.');
+    if(leadToSalePct<expectedLTS)warns.push('Current Lead → Sale % target se kam hai.');
+    if(cac>aov&&aov>0)warns.push('CAC AOV se zyada hai — unit economics negative.');
+    if(totalRevenue<totalOperatingCost)warns.push('Revenue total operating cost se kam hai — loss month.');
+    if(requiredLeads>leads*2)warns.push('Target ke liye current se 2x+ leads chahiye.');
+    if(totalSales!==wonCustomers)warns.push('Course-wise total sales ('+totalSales+') Won Customers ('+wonCustomers+') se match nahi kar raha.');
+    var wc=$('warnCard');
+    if(warns.length){wc.hidden=false;$('warnList').innerHTML=warns.map(function(w){return '<li>'+esc(w)+'</li>';}).join('');}else{wc.hidden=true;}
+  }
+  courseRows.addEventListener('input',leadgenCompute);
+  courseRows.addEventListener('click',function(e){if(e.target.classList.contains('rmv')){var r=e.target.closest('.crow');if(r&&courseRows.children.length>1){r.remove();leadgenCompute();}}});
+  $('addCourseBtn').addEventListener('click',function(){courseRows.appendChild(createCourseRow({name:'Course '+(courseRows.children.length+1)}));leadgenCompute();});
+  bizIds.concat(gpIds).forEach(function(id){$(id).addEventListener('input',leadgenCompute);});
+
+  // ---- Budget Planner ----
+  function budgetCompute(){
+    var b=num('bp_e_budget'),cac=num('bp_e_cac'),aov=num('bp_e_aov'),vc=num('bp_e_varcost'),fx=num('bp_e_fixed');
+    var orders=cac>0?b/cac:0, revenue=orders*aov, profit=revenue-b-orders*vc-fx;
+    setTxt('bp_e_orders',Math.round(orders));setTxt('bp_e_revenue',fmt(revenue));setTxt('bp_e_profit',fmt(profit),profit>=0?'pos':'neg');
+    var lb=num('bp_l_budget'),cpl=num('bp_l_cpl'),conv=num('bp_l_conv'),laov=num('bp_l_aov'),lfx=num('bp_l_fixed');
+    var lleads=cpl>0?lb/cpl:0, lsales=lleads*(conv/100), lrev=lsales*laov, lprofit=lrev-lb-lfx;
+    setTxt('bp_l_leads',Math.round(lleads));setTxt('bp_l_sales',Math.round(lsales));setTxt('bp_l_revenue',fmt(lrev));setTxt('bp_l_profit',fmt(lprofit),lprofit>=0?'pos':'neg');
+  }
+  ['bp_e_budget','bp_e_cac','bp_e_aov','bp_e_varcost','bp_e_fixed','bp_l_budget','bp_l_cpl','bp_l_conv','bp_l_aov','bp_l_fixed'].forEach(function(id){$(id).addEventListener('input',budgetCompute);});
+  document.querySelectorAll('.biz-toggle button').forEach(function(btn){btn.addEventListener('click',function(){
+    document.querySelectorAll('.biz-toggle button').forEach(function(b){b.classList.remove('active');});
+    this.classList.add('active');
+    var t=this.dataset.bp;$('bp-ecom').hidden=(t!=='ecom');$('bp-leadgen').hidden=(t!=='leadgen');
+  });});
+
+  // ---- Tabs ----
+  document.querySelectorAll('.tab-btn').forEach(function(btn){btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+    this.classList.add('active');$('panel-'+this.dataset.tab).classList.add('active');
+  });});
+
+  // ---- Report download (per tool, browser print → Save as PDF) ----
+  window.printReport=function(tab){
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.removeAttribute('data-report-active');});
+    $('panel-'+tab).setAttribute('data-report-active','true');
+    var d=$('ph_date_'+tab);
+    if(d)d.textContent='Generated on '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+    window.print();
+  };
+  window.addEventListener('afterprint',function(){document.querySelectorAll('.tab-panel').forEach(function(p){p.removeAttribute('data-report-active');});});
+
+  // ---- Global controls ----
+  $('resetBtn').addEventListener('click',function(){location.reload();});
+  var themeBtn=$('themeBtn');
+  function applyTheme(t){if(t)document.documentElement.setAttribute('data-theme',t);else document.documentElement.removeAttribute('data-theme');}
+  themeBtn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var pd=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var eff=cur?cur==='dark':pd; applyTheme(eff?'light':'dark');
+  });
+
+  ecomCompute();leadgenCompute();budgetCompute();
+})();
+</script>
+</body>
+</html>
